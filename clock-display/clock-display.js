@@ -84,6 +84,17 @@ function setSegment(digit, seg, state) {
     s.setAttribute('visibility', state ? 'visible' : 'hidden');
 }
 
+
+function setSeconds(sec) {
+    for (var i=0; i<=59; i++){
+        var n = String(i);
+        if (i<10) n = "0" + n;
+        var s = document.getElementById('dot_' + n);
+        s.setAttribute('visibility', i<=sec ? 'visible' : 'hidden');
+    }
+}
+
+
 function print_text(text_string, position){
     for (var i=0; i<text_string.length; i++){ 
         setDigit(9-(position+i), text_string[text_string.length - 1 - i]);
@@ -118,6 +129,7 @@ function update_timer(){
 //    print_number(timer, 0, 10);
 //    print_text("TESTE UVWXYZ", 0);
     scroll_text(text_messages.join("          "), 0);
+    setSeconds(timer%60);
 }
 
 function reset_display() {
